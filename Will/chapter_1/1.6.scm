@@ -12,10 +12,18 @@
 (define (sqrt-iter guess x)
   (new-if (good-enough? guess x)
           guess
-          (sqrt-iter (improve-guess x)
+          (sqrt-iter (improve-guess guess x)
                      x)))
+
 (define (good-enough? guess x)
   (< (abs (- (* guess guess) x)) .001))
 
+(define (improve-guess guess x)
+  (average guess (/ x guess)))
+
 (test-eq (good-enough? 2 5) #f)
 (test-eq (good-enough? 2 4) #t)
+
+(sqrt-iter 1.0 9)
+; Runs forever. Applicative order means params are evaluated first,
+; so sqrt-iter gets called in an infinite recursion. 

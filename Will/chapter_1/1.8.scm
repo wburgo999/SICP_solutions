@@ -21,3 +21,6 @@
 
 (assert-close (cube-root 8) 2)
 
+; this good-enough procedure just requires that our answer squared
+; be within 1% of n. 
+

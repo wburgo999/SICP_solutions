@@ -1,46 +1,37 @@
 (load "../utils.scm")
 (load "../test-lib.scm")
 
-(display "Expected: 10, Actual: ")
-(display 10)
+(assert-eq 10 10)
 
-(display "\nExpected: 12 Actual: ")
-(display (+ 5 3 4))
+(assert-eq (+ 5 3 4) 12)
 
-(display "\nExpected: 12 Actual: ")
-(display (- 9 1))
+(assert-eq (- 9 1) 8)
 
-(display "\nExpected: 12 Actual: ")
-(display (/ 6 2))
+(assert-eq (/ 6 2) 3)
 
-(display "\nExpected: 12 Actual: ")
-(display (+ (* 2 4) (- 4 6)))
+(assert-eq (+ (* 2 4) (- 4 6)) 6)
 
 (define a 3)
 (define b (+ a 1))
 
-(display "\nExpected: 19 Actual: ")
-(display (+ a b (* a b)))
+(assert-eq (+ a b (* a b)) 19)
 
-(display "\nExpected: #f Actual: ")
-(display (= a b))
+(assert-eq (= a b) #f)
 
-(display "\nExpected: 4 Actual: ")
-(display (if (and (> b a) (< b (* a b)))
-           b
-           a))
+(assert-eq (if (and (> b a) (< b (* a b)))
+             b
+             a)
+           b)
 
-(display "\nExpected: 16 Actual: ")
-(display (cond ((= a 4) 6)
+(assert-eq (cond ((= a 4) 6)
                ((= b 4) (+ 6 7 a))
-               (else 25)))
+               (else 25))
+           16)
 
-(display "\nExpected: 6 Actual: ")
-(display (+ 2 (if (> b a) b a)))
+(assert-eq (+ 2 (if (> b a) b a)) 6)
 
-(display "\nExpected: 16 Actual: ")
-(display (* (cond ((> a b) a)
+(assert-eq (* (cond ((> a b) a)
                   ((< a b) b)
                   (else -1))
-            (+ a 1)))
+            (+ a 1)) 16)
 
