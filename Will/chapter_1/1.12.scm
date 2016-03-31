@@ -1,5 +1,5 @@
-(load "utils.scm")
-(load "test-lib.scm")
+(load "../utils.scm")
+(load "../test-lib.scm")
 
 (define (pascal n)
   (define (pascal r c)

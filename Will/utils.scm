@@ -10,6 +10,9 @@
 
 (define (dec x) (- x 1))
 
+(define (int-floor x)
+  (inexact->exact (floor x)))
+
 (define (square x)
   (* x x))
 
@@ -22,11 +25,14 @@
 (define (average3 x y z)
   (/ (+ x y z) 3))
 
-(define (is-even? n)
-  (= (modulo n 2) 0))
-
-(define (is-odd? n)
-  (not (is-even? n)))
+(define (fib n)
+  (define (iter i current previous)
+    (if (> i n) 
+      current
+      (iter (inc i) (+ current previous) current)))
+  (if (= n 0)
+    0
+    (iter 2 1 0)))
 
 (define (average-damp f)
   (lambda (x) (average x (f x))))
@@ -61,7 +67,7 @@
     (= n (smallest-divisor n))))
 
 ; accumulator/ reduce
-(define (accumulate combiner null-value a b term next)
+(define (accumulate-stream combiner null-value a b term next)
   (define (iter a result)
     (if (> a b)
       result
@@ -69,10 +75,10 @@
   (iter a null-value))
 
 (define (sum a b term next)
-  (accumulate + 0 a b term next))
+  (accumulate-stream + 0 a b term next))
 
 (define (product a b term next)
-  (accumulate * 1 a b term next))
+  (accumulate-stream * 1 a b term next))
 
 ;Greatest common divisor
 (define (gcd a b)
@@ -80,7 +86,7 @@
     (if (= b 0)
       a
       (gcd b (remainder a b))))
-  (iter (max a b) (min a b)))
+  (iter (max (abs a) (abs b)) (min (abs a) (abs b))))
 
 ;LOOPS - how to test??
 (define (for start end next f)
@@ -145,4 +151,54 @@
       result
       (iter (inc count) (compose f result))))
   (iter 1 f))
+
+; pipe
+(define (pipe . procs)
+  (define (iter procs)
+    (if (null? (cdr procs))
+      (car procs)
+      (compose (car procs) (iter (cdr procs)))))
+  (iter procs))
+
+; signal processing
+(define (enumerate a b)
+  (if (> a b)
+    '() 
+    (cons a (enumerate (inc a) b))))
+
+(define (filter predicate sequence)
+  (if (null? sequence)
+    '()
+    (if (predicate (car sequence))
+      (cons (car sequence) (filter predicate (cdr sequence)))
+      (filter predicate (cdr sequence)))))
+
+(define (accumulate f initial sequence)
+  (if (null? sequence)
+    initial
+    (f (car sequence) (accumulate f initial (cdr sequence)))))
+
+(define (accumulate-n op init seqs)
+  (if (null? (car seqs))
+    '()
+    (cons (accumulate op init (accumulate (lambda (a b) 
+                                            (cons (car a) b)) '() seqs))
+          (accumulate-n op init (accumulate (lambda (a b) (cons (cdr a) b)) '() seqs)))))
+
+; fold
+(define (fold-right op initial sequence)
+  (if (null? sequence)
+    initial
+    (op (car sequence) (fold-right op initial (cdr sequence)))))
+
+(define (fold-left op initial sequence)
+  (define (iter sequence result)
+    (if (null? sequence)
+      result
+      (iter (cdr sequence) (op result (car sequence)))))
+  (iter sequence initial))
+
+(define (flatmap procedure sequence)
+  (accumulate append '()
+              (map procedure sequence)))
 

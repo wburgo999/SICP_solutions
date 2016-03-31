@@ -1,5 +1,5 @@
-(load "test-lib.scm")
-(load "utils.scm")
+(load "../utils.scm")
+(load "../test-lib.scm")
 
 (define (sum a b f next)
   (if (> a b)

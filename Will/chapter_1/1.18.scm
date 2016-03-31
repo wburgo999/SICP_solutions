@@ -1,3 +1,6 @@
+(load "../utils.scm")
+(load "../test-lib.scm")
+
 (define (double x)
   (* x 2))
 

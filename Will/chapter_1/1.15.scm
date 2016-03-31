@@ -3,8 +3,8 @@
 ; Time complexity? Time complexity (log n), space complexity is (log n) as well, because it is NOT tail recursive
 ; TODO: think of another example of this phenomenon
 
-(load "utils.scm")
-(load "test-lib.scm")
+(load "../utils.scm")
+(load "../test-lib.scm")
 
 (define (p x) (- (* 3 x) (* 4 (cube x))))
 

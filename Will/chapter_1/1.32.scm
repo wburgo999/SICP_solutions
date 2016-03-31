@@ -1,5 +1,5 @@
-(load "utils.scm")
-(load "test-lib.scm")
+(load "../utils.scm")
+(load "../test-lib.scm")
 
 (define (accumulate combiner null-value a b f next)
   (if (> a b)

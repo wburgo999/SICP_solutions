@@ -1,5 +1,6 @@
 ; done - but do some research on the Ackerman function
-(load "test-lib.scm")
+(load "../utils.scm")
+(load "../test-lib.scm")
 
 (define (A x y)
   (cond ((= y 0) 0)

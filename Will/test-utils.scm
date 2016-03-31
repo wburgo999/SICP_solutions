@@ -9,6 +9,8 @@
 
 (assert-eq (dec 4) 3)
 
+(assert-eq (int-floor 2.2) 2)
+
 (assert-eq (square 4) 16)
 (assert-eq (square -9) 81)
 (assert-eq (square 0) 0)
@@ -25,14 +27,11 @@
 (assert-eq (average3 -9 9 30) 10)
 (assert-eq (average3 -32 78 -10) 12)
 
-(assert-eq (is-even? 4) #t)
-(assert-eq (is-even? -3) #f)
-(assert-eq (is-even? 0) #t)
-
-(assert-eq (is-odd? 4) #f)
-(assert-eq (is-odd? -3) #t)
-(assert-eq (is-odd? 0) #f)
-(assert-eq (is-odd? 7) #t)
+(assert-eq (fib 0) 0)
+(assert-eq (fib 1) 1)
+(assert-eq (fib 2) 1)
+(assert-eq (fib 5) 5)
+(assert-eq (fib 8) 21)
 
 (assert-eq ((average-damp square) 10) 55)
 
@@ -75,3 +74,25 @@
 
 (assert-eq ((repeated square 3) 2) 256)
 (assert-eq ((repeated inc 10) 3) 13)
+
+; pipe
+(define square-cube (pipe square cube))
+(assert-eq (map square-cube (list 1 2 3 4 5))
+           (list 1 64 729 4096 15625))
+
+(assert-eq (enumerate 3 5) (list 3 4 5))
+
+(assert-eq (filter odd? (enumerate 2 10)) (list 3 5 7 9))
+
+(assert-eq (accumulate + 0 (list 1 2 3 4 5 6 7 8 9 10)) 55)
+
+
+(assert-eq (accumulate-n + 0 (list (enumerate 1 3) (enumerate 4 6) (enumerate 7 9) (enumerate 10 12))) (list 22 26 30))
+
+(assert-close (fold-right / 1 (list 1 2 3)) (/ 3 2))
+(assert-close (fold-left / 1 (list 1 2 3)) (/ 1 6))
+
+(assert-eq (flatmap
+             (lambda (x) (list x 1))
+             (enumerate 1 5))
+           (list 1 1 2 1 3 1 4 1 5 1))

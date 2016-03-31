@@ -1,8 +1,8 @@
 ; done
 ; why is negative a procedure?
 ; what has parenthesis and doesn't?
-(load "utils.scm")
-(load "test-lib.scm")
+(load "../utils.scm")
+(load "../test-lib.scm")
 
 (define (cont-frac-tan x k)
   (define n 

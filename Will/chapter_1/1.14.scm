@@ -1,6 +1,6 @@
 ; done, but in repl, write out in full here
-(load "test-lib.scm")
-(load "utils.scm")
+(load "../utils.scm")
+(load "../test-lib.scm")
 
 (define count 0)
 

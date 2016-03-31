@@ -1,5 +1,6 @@
 ; TODO:research closed form solution of fib and why it takes this specific form
-(load "utils.scm")
+(load "../utils.scm")
+(load "../test-lib.scm")
 
 (define (fib n)
   (fib-iter 1 0 0 1 n))

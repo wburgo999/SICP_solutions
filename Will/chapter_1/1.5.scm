@@ -1,5 +1,6 @@
 ;TODO: write out explanation
-(load "test-lib.scm")
+(load "../utils.scm")
+(load "../test-lib.scm")
 
 (define (p) (p))
 

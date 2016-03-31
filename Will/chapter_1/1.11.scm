@@ -1,5 +1,6 @@
 ; TODO iter
-(load "test-lib.scm")
+(load "../utils.scm")
+(load "../test-lib.scm")
 
 (define (f-recursive n)
   (if (< n 3)

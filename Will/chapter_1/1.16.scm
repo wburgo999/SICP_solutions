@@ -3,8 +3,8 @@
 ; otherwise, you'd have to do a recursive process, because you'd multiply by b for all the odds
 ; STEPS? (log2 n) steps, but since it's tail recursive, space is O(1)
 
-(load "utils.scm")
-(load "test-lib.scm")
+(load "../utils.scm")
+(load "../test-lib.scm")
 
 (define (fast-expt b n a)
   (cond ((eq? n 1) a)

@@ -1,5 +1,6 @@
 ; todo - research probabilistic and other methods for determining primes
-(load "utils.scm")
+(load "../utils.scm")
+(load "../test-lib.scm")
 
 (define (expmod base exp m)
   (cond ((= exp 0) 1)

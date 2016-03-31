@@ -1,4 +1,6 @@
-;done
+(load "../utils.scm")
+(load "../test-lib.scm")
+
 (display "Expected: 10, Actual: ")
 (display 10)
 
