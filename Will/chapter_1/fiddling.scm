@@ -1,3 +1,4 @@
+;randome fiddling around / practicing examples in book
 (load "../utils.scm")
 (load "../test-lib.scm")
 
