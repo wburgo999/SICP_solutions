@@ -1,7 +1,8 @@
-(define (disp . vs)
-     (for-each display vs)
+(define (disp . elements)
+     (for-each display elements)
      (display "\n"))
 
+; basic functions 
 (define (identity x) x)
 
 (define (inc x) (+ x 1))
@@ -45,7 +46,8 @@
      bound))
 
 (define (close-abs? bound approximation actual)
-  (< (abs (- approximation actual)) bound))
+  (< (abs (- approximation actual))
+     bound))
 
 ; PRIMES
 (define (smallest-divisor n)
@@ -144,7 +146,7 @@
 (define (newtons-method g)
     (fixed-point .001 (newton-transform g) 1.0))
 
-; abstract
+; functional programming
 (define (repeated f n)
   (define (iter count result)
     (if (= count n)
@@ -152,7 +154,6 @@
       (iter (inc count) (compose f result))))
   (iter 1 f))
 
-; pipe
 (define (pipe . procs)
   (define (iter procs)
     (if (null? (cdr procs))
@@ -185,7 +186,6 @@
                                             (cons (car a) b)) '() seqs))
           (accumulate-n op init (accumulate (lambda (a b) (cons (cdr a) b)) '() seqs)))))
 
-; fold
 (define (fold-right op initial sequence)
   (if (null? sequence)
     initial

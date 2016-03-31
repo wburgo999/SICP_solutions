@@ -9,10 +9,7 @@
 
 ;further practice
 (define (square-even-cube-odd n)
-  ((if (is-even? n)
-    square
-    cube)
-   n))
+  ((if (even? n) square cube) n))
 
 (assert-eq (square-even-cube-odd 4) 16)
 (assert-eq (square-even-cube-odd 3) 27)
