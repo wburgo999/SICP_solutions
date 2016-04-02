@@ -1,5 +1,5 @@
-(load "../utils.scm")
-(load "../test-lib.scm")
+(load "../helpers/utils.scm")
+(load "../helpers/test-lib.scm")
 
 (define (cont-frac n d k)
   (define (iter index result)

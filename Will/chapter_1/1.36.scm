@@ -1,5 +1,5 @@
-(load "../utils.scm")
-(load "../test-lib.scm")
+(load "../helpers/utils.scm")
+(load "../helpers/test-lib.scm")
 
 (define (fixed-point tolerance f guess)
   (display guess)

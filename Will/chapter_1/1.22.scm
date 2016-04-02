@@ -2,8 +2,8 @@
 ; this is problem 1.22 and 1.23
 ; 1.23 - the reason it's different is because the runtime for prime? for even numbers is very fast, because
 ; they are immediately eliminated when it checks if they're divisible by 2
-(load "../utils.scm")
-(load "../test-lib.scm")
+(load "../helpers/utils.scm")
+(load "../helpers/test-lib.scm")
 
 (define (timed-prime-test n)
   (start-prime-test n (current-milliseconds)))

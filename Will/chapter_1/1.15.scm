@@ -1,5 +1,5 @@
-(load "../utils.scm")
-(load "../test-lib.scm")
+(load "../helpers/utils.scm")
+(load "../helpers/test-lib.scm")
 
 (define (p x) (- (* 3 x) (* 4 (cube x))))
 

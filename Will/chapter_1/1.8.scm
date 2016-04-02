@@ -1,5 +1,5 @@
-(load "../utils.scm")
-(load "../test-lib.scm")
+(load "../helpers/utils.scm")
+(load "../helpers/test-lib.scm")
 
 (define (cube-root n)
   (define (cube-iter guess)

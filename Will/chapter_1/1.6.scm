@@ -1,6 +1,6 @@
 ;//TODO - write out explanation 
-(load "../utils.scm")
-(load "../test-lib.scm")
+(load "../helpers/utils.scm")
+(load "../helpers/test-lib.scm")
 
 (define (new-if predicate then-clause else-clause)
   (cond (predicate then-clause)

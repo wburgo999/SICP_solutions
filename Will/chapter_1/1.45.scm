@@ -1,6 +1,6 @@
 ; done - but I don't know why this pattern exists
-(load "../utils.scm")
-(load "../test-lib.scm")
+(load "../helpers/utils.scm")
+(load "../helpers/test-lib.scm")
 
 ; In order to test this better, let's make function that returns
 ; the fixed point function for the nth root

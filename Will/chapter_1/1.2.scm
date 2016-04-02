@@ -1,6 +1,5 @@
-; done
-(load "../utils.scm")
-(load "../test-lib.scm")
+(load "../helpers/utils.scm")
+(load "../helpers/test-lib.scm")
 
 (assert-close (/ (+ 5 4
                     (- 2 (- 3 (+ 6 (/ 4 5)))))
