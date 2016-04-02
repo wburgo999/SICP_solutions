@@ -7,11 +7,14 @@
       (average3 (f (- x dx)) (f x) (f (+ x dx))))))
 
 (define (n-fold-smooth f n)
-  (repeated (smooth f) n))
+  ((repeated smooth n) f))
 
 (define smoothed-square (smooth square))
-(disp (smoothed-square 2))
-(disp ((n-fold-smooth square 3) 2))
 
+(define smoothed-square-10-fold (n-fold-smooth square 10))
+
+(assert-close (smoothed-square-10-fold 3) 9)
+
+(assert-close (smoothed-square 3) 9)
 
 
