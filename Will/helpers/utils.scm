@@ -76,10 +76,10 @@
       (iter (next a) (combiner result (term a)))))
   (iter a null-value))
 
-(define (sum a b term next)
+(define (sum-stream a b term next)
   (accumulate-stream + 0 a b term next))
 
-(define (product a b term next)
+(define (product-stream a b term next)
   (accumulate-stream * 1 a b term next))
 
 ;Greatest common divisor
@@ -182,9 +182,8 @@
 (define (accumulate-n op init seqs)
   (if (null? (car seqs))
     '()
-    (cons (accumulate op init (accumulate (lambda (a b) 
-                                            (cons (car a) b)) '() seqs))
-          (accumulate-n op init (accumulate (lambda (a b) (cons (cdr a) b)) '() seqs)))))
+    (cons (accumulate op init (map car seqs))
+          (accumulate-n op init (map cdr seqs)))))
 
 (define (fold-right op initial sequence)
   (if (null? sequence)
@@ -201,4 +200,48 @@
 (define (flatmap procedure sequence)
   (accumulate append '()
               (map procedure sequence)))
+
+(define (sum items)
+  (fold-right + 0 items))
+
+; shapes and number constructors and selectors
+(define (make-rat n d)
+  (let ((a (/ n (gcd n d)))
+        (b (/ d (gcd n d))))
+    (if (negative? b)
+      (cons (- a) (- b))
+      (cons a b))))
+
+(define numer car)
+(define denom cdr)
+
+(define (make-segment start end)
+  (cons start end))
+
+(define (start-segment segment)
+  (car segment))
+
+(define (end-segment segment)
+  (cdr segment))
+
+(define (make-point x y)
+  (cons x y))
+
+(define (x-point point)
+  (car point))
+
+(define (y-point point)
+  (cdr point))
+
+(define (midpoint segment)
+  (make-point
+    (/ (+ (x-point (start-segment segment))
+          (x-point (end-segment segment)))
+       2)
+    (/ (+ (y-point (start-segment segment))
+          (y-point (end-segment segment)))
+       2)))
+
+
+
 

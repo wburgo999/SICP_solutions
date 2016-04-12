@@ -49,13 +49,13 @@
 (assert-eq (prime? 1) #f)
 (assert-eq (prime? -1) #f)
 
-(assert-eq (sum 1 10 identity inc) 55)
-(assert-eq (sum 1 3 cube inc) 36)
-(assert-eq (sum 1 10 square (lambda (y) (+ y 4))) 107)
+(assert-eq (sum-stream 1 10 identity inc) 55)
+(assert-eq (sum-stream 1 3 cube inc) 36)
+(assert-eq (sum-stream 1 10 square (lambda (y) (+ y 4))) 107)
 
-(assert-eq (product 1 5 identity inc) 120)
-(assert-eq (product 1 3 cube inc) 216)
-(assert-eq (product 1 6 square (lambda (y) (+ y 4))) 25)
+(assert-eq (product-stream 1 5 identity inc) 120)
+(assert-eq (product-stream 1 3 cube inc) 216)
+(assert-eq (product-stream 1 6 square (lambda (y) (+ y 4))) 25)
 
 (assert-eq (gcd 1 5) 1)
 (assert-eq (gcd 20 40) 20)
@@ -95,3 +95,29 @@
              (lambda (x) (list x 1))
              (enumerate 1 5))
            (list 1 1 2 1 3 1 4 1 5 1))
+
+(assert-eq (sum (list 1 2 3 4 5)) 15)
+
+(define one-third (make-rat 2 6))
+(define neg-three-halves (make-rat 9 -6))
+
+(assert-eq (numer one-third) 1)
+(assert-eq (denom one-third) 3)
+(assert-eq (numer neg-three-halves) -3)
+(assert-eq (denom neg-three-halves) 2)
+
+(define p1 (make-point 1 2))
+(define p2 (make-point 5 6))
+(define line1 (make-segment p1 p2))
+
+(assert-eq (x-point p1) 1)
+(assert-eq (x-point p2) 5)
+(assert-eq (y-point p1) 2)
+(assert-eq (y-point p2) 6)
+
+(assert-eq (start-segment line1) p1)
+(assert-eq (end-segment line1) p2)
+
+
+
+
