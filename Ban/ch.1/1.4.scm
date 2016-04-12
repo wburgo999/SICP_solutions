@@ -56,6 +56,8 @@
 
 ;; Error: during expansion of (let ...) - in `let' - pair expected: (let a (vector-ref V 0))
 
+; [WILL] let takes the form (let ((variable value) (variable value)....) expressions).
+; basically, you're just missing some parenthesis
 
 
 
