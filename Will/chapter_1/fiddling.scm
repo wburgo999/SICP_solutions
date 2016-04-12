@@ -11,6 +11,8 @@
 (define (sum-integers a b)
   (sum a b identity inc))
 
+(display "hello")
+
 (define (sum-cubes a b)
   (sum a b cube inc))
 
