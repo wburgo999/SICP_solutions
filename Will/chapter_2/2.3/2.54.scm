@@ -1,5 +1,4 @@
-; done
-; purpose: understand that a list of quoted items can be compared to another
+;; 2.54.scm
 (load "../../helpers/utils.scm")
 (load "../../helpers/test-lib.scm")
 
@@ -15,4 +14,6 @@
 (assert-eq (equal? (list 1 2 3) (list 1 2 3)) #t)
 (assert-eq (equal? (list 2 3 4) (list 2 3)) #f)
 (assert-eq (equal? 1 1) #t)
+
+(assert-eq (equal? '(a b c) '(a b c)) true)
 
