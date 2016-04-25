@@ -1,19 +1,38 @@
-;; requires random-bsd, vector-lib
-;; square of a number
-(define (square x)
-  (* x x))
+(load "../lib/prob.scm")
+(load "../lib/math.scm")
+
 
 ;; return the sum of squares of the larger two out of three numbers
 (define (sumOfSquaresOfLargerTwo x y z)
-  (+ (square (max x y)) (square (max x z))))
+  (+ (square (max x y))
+     (square (if (> x y) (max y z) (max x z))
+			 )))
+			 
 
-(print (sumOfSquaresOfLargerTwo 548.390856275813 286.093668626267 434.584923762312))
+;; generate 3-dimensional uniformly-distributed real vector between -1000 and 1000
+;; test sumOfSquaresOfLargerTwo 
+(define A (gen-uniform-reals-vector 1000 3))
 
-;; generate random numbers between 0 and 1000(
-(use random-bsd)
-(use vector-lib)
+(define (test)
+  (let ((x (vector-ref A 0))
+	(y (vector-ref A 1))
+	(z (vector-ref A 2)))
+	(print "\nx =" x
+	       "\ny =" y
+	       "\nz =" z
+	       "\n(square x) =" (square x)
+	       "\n(square y) =" (square y)
+	       "\n(square z) =" (square z)
+	       "\n(sumOfSquareOfLargerTwo x y z) ="
+	       (sumOfSquaresOfLargerTwo x y z)
+	       "\n")))
 
-(define threeRandomRealsVector (vector-map (lambda (x y) (+ (random 1000) (random-real)) ) (make-vector 3)))
+(define foo (test))
 
-;; TBC
+
+
+	       
+	       
+
+
 
