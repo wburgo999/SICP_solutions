@@ -1,0 +1,5 @@
+;; mathematical functions library
+(use vector-lib)
+
+(define (square x)
+  (* x x))
